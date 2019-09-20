@@ -1,0 +1,13 @@
+.card-body {
+    background-color: #002966;
+}
+
+.navbar {
+    background-color: #001a33;
+}
+
+body {
+    background-image: url('/resources/static/img/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
