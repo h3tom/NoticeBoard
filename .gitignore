@@ -1,4 +1,5 @@
 .class
+target/**
 # Created by https://www.gitignore.io/api/intellij+iml
 # Edit at https://www.gitignore.io/?templates=intellij+iml
 
@@ -82,6 +83,3 @@ modules.xml
 .idea
 
 # End of https://www.gitignore.io/api/intellij+iml
-/target/classes/META-INF/persistence.xml
-/target/app-1.0-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml
-/target/app-1.0-SNAPSHOT/META-INF/MANIFEST.MF
