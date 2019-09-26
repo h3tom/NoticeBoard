@@ -1,4 +1,4 @@
-.card-body {
+.card-colour, .card-body {
     background-color: #002966;
 }
 
@@ -10,4 +10,12 @@ body {
     background-image: url('/resources/static/img/background.png');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+div.addNotice, div.categories {
+    position: fixed;
+}
+
+div.categories {
+    margin-top: 80px;
 }
