@@ -1,5 +1,6 @@
-package com.noticeBoard.app.web.controllers;
+package com.noticeBoard.app.web.controllers.page;
 
+import com.noticeBoard.app.dto.AddCommentDTO;
 import com.noticeBoard.app.services.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/notice-info")
-public class ShowNoticeInfoController {
+public class ShowNoticeInfoPageController {
 
     private NoticeService noticeService;
 
     @Autowired
-    public ShowNoticeInfoController(NoticeService noticeService) {
+    public ShowNoticeInfoPageController(NoticeService noticeService) {
         this.noticeService = noticeService;
     }
 
     @GetMapping
     @RequestMapping("/{id}")
-    public String prepareShowNoticeInfo(@PathVariable Long id, Model model) {
+    public String prepareShowNoticeInfoPage(@PathVariable Long id, Model model) {
         model.addAttribute("noticeInfo", noticeService.getById(id));
-
+        model.addAttribute("commentData", new AddCommentDTO());
         return "showNoticeInfo";
     }
 }
