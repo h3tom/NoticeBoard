@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 
 public class RegistrationFormDTO {
 
-    @NotBlank(message = "cannot be empty")
     @Size(min = 2, message = "must have at least 2 characters")
     private String username;
 
@@ -16,19 +15,15 @@ public class RegistrationFormDTO {
     @Email(message = "incorrect email")
     private String email;
 
-    @NotBlank(message = "cannot be empty")
     @Size(min = 2, message = "must have at least 2 characters")
     private String firstName;
 
-    @NotBlank(message = "cannot be empty")
     @Size(min = 2, message = "must have at least 2 characters")
     private String lastName;
 
-    @NotBlank(message = "cannot be empty")
     @Size(min = 8, max = 12, message = "must be between 8 and 12 characters")
     private String password;
 
-    @NotBlank(message = "cannot be empty")
     @Size(min = 8, max = 12, message = "must be between 8 and 12 characters")
     private String rePassword;
 
