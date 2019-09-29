@@ -2,12 +2,26 @@ package com.noticeBoard.app.dto;
 
 import java.time.LocalDateTime;
 
-public class CommentDTO {
+public class CommentDTO implements Comparable<CommentDTO> {
 
+    private Long noticeId;
     private String content;
     private LocalDateTime created;
     private String registeredUsername;
     private String unregisteredUsername;
+
+    @Override
+    public int compareTo(CommentDTO o) {
+        return this.getCreated().compareTo(o.getCreated());
+    }
+
+    public Long getNoticeId() {
+        return noticeId;
+    }
+
+    public void setNoticeId(Long noticeId) {
+        this.noticeId = noticeId;
+    }
 
     public String getContent() {
         return content;
