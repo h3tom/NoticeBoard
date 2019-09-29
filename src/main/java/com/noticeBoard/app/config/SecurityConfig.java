@@ -22,8 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .usernameParameter("user_name")
-                .defaultSuccessUrl("/", false)
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/home", false)
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
@@ -35,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/home/*").permitAll()
+                .antMatchers("/notice-info/*").permitAll()
+                .antMatchers("/add-comment").permitAll()
                 .anyRequest().authenticated();
     }
 
@@ -43,9 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())
                 .dataSource(dataSource())
-                .usersByUsernameQuery("SELECT user_name, password, true FROM users WHERE user_name = ?")
-                .authoritiesByUsernameQuery("SELECT user_name, 'ROLE_USER' FROM users WHERE user_name = ?");
-
+                .usersByUsernameQuery("SELECT username, password, true FROM users WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, 'ROLE_USER' FROM users WHERE username = ?");
     }
 
     @Bean
@@ -57,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/twitterDB?serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/noticeBoardDB?serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("coderslab");
         return dataSource;
@@ -67,6 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/static/**","/css/**", "/js/**", "/img/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/avatar/**");
     }
 }
