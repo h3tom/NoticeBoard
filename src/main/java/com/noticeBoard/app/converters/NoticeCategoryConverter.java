@@ -13,7 +13,7 @@ public class NoticeCategoryConverter implements Converter<String, CategoryDTO> {
 
     @Override
     public CategoryDTO convert(String source) {
-        Category category = categoryRepository.findById(Long.parseLong(source));
+        Category category = categoryRepository.findOne(Long.parseLong(source));
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setId(category.getId());
         categoryDTO.setTitle(category.getTitle());
