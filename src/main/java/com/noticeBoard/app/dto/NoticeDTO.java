@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoticeDTO {
+public class NoticeDTO implements Comparable<NoticeDTO>{
 
     private Long id;
     private String title;
@@ -15,6 +15,11 @@ public class NoticeDTO {
     private String image;
     private String owner;
     private List<CategoryDTO> categories = new ArrayList<>();
+
+    @Override
+    public int compareTo(NoticeDTO o) {
+        return this.getCreated().compareTo(o.getCreated());
+    }
 
     public Long getId() {
         return id;
