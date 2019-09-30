@@ -3,53 +3,54 @@ package com.noticeBoard.app.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User extends AbstractEntity {
 
-    @NotBlank
     @Size(min = 2)
-    @Column(name = "user_name", unique = true)
-    private String userName;
+    @Column(name = "username", unique = true)
+    private String username;
 
     @NotBlank
     @Email
     @Column(unique = true)
     private String email;
 
-    @NotBlank
     @Size(min = 2)
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
     @Size(min = 2)
     @Column(name = "last_name")
     private String lastName;
 
     @NotBlank
-    @Size(min = 8, max = 12)
     private String password;
 
     @Lob
-    @Column(columnDefinition = "BLOB")
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] avatar;
+
+    @OneToMany(mappedBy = "user")
+    private List<Notice> notices = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
 
     public User() {
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -90,5 +91,21 @@ public class User extends AbstractEntity {
 
     public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public List<Notice> getNotices() {
+        return notices;
+    }
+
+    public void setNotices(List<Notice> notices) {
+        this.notices = notices;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
