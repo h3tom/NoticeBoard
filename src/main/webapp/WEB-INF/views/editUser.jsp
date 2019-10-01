@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Edit User</title>
-    <%@include file="fragments/headFragment.jspf"%>
+    <%@include file="fragments/head.jspf"%>
 </head>
 <body>
 

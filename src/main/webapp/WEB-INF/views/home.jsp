@@ -11,13 +11,7 @@
 <html>
 <head>
     <title>Main Page</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/static/css/style.css"/> ">
-    <link rel="stylesheet"
-          href='<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>'>
-    <link href="<c:url value="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>"
-          rel="stylesheet">
-    <script src='<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>'></script>
-    <script src='<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"/>'></script>
+    <%@include file="fragments/head.jspf"%>
     <script src="<c:url value="/resources/static/js/selectCategoryScript.js"/>"></script>
 </head>
 <body>
@@ -61,7 +55,7 @@
                 <div class="card-colour text-white col-md-6">
                     <div class="card-body">
                         <h6 class="card-title">
-                                ${notice.owner} ${notice.created.dayOfMonth}.${notice.created.monthValue}.${notice.created.year}
+                            <a href="<c:url value="/user-page/${notice.owner}"/>">${notice.owner}</a> ${notice.created.dayOfMonth}.${notice.created.monthValue}.${notice.created.year}
                                 ${notice.created.hour}:${notice.created.minute}
                         </h6>
                         <h5 class="card-title">

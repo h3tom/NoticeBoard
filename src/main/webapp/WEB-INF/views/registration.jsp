@@ -11,11 +11,7 @@
 <html>
 <head>
     <title>Registration Page</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/static/css/style.css"/> ">
-    <link rel="stylesheet"
-          href='<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>'>
-    <script src='<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>'></script>
-    <script src='<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"/>'></script>
+    <%@include file="fragments/head.jspf"%>
 </head>
 <body>
 
@@ -25,50 +21,50 @@
 
     <div class="row">
         <div class="col-md-5 mx-auto">
-            <div class="card text-white my-5">
+            <div class="card text-white bg-dark my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Registration</h5>
                     <form:form method="post" modelAttribute="registrationData" enctype="multipart/form-data">
                         <div class="form-label-group">
                             <form:input path="firstName" id="inputFirstName" class="form-control"/>
-                            <label for="inputFirstName">First Name</label>
-                            <font color="red"><form:errors path="firstName"/></font>
+                            <label for="inputFirstName"><i class="fa fa-id-card"></i> First Name</label>
+                            <span style="color: red; "><form:errors path="firstName"/></span>
                         </div>
 
                         <div class="form-label-group">
                             <form:input path="lastName" id="inputLastName" class="form-control"/>
-                            <label for="inputLastName">Last name</label>
-                            <font color="red"><form:errors path="lastName"/></font>
+                            <label for="inputLastName"><i class="fa fa-id-card"></i> Last name</label>
+                            <span style="color: red; "><form:errors path="lastName"/></span>
                         </div>
 
                         <div class="form-label-group">
                             <form:input path="username" id="inputUsername" class="form-control"/>
-                            <label for="inputUsername">Username</label>
-                            <font color="red"><form:errors path="username"/></font>
+                            <label for="inputUsername"><i class="fa fa-user"></i> Username</label>
+                            <span style="color: red; "><form:errors path="username"/></span>
                         </div>
 
                         <div class="form-label-group">
                             <form:input path="email" type="email" id="inputEmail" class="form-control"/>
-                            <label for="inputEmail">Email address</label>
-                            <font color="red"><form:errors path="email"/></font>
+                            <label for="inputEmail"><i class="fa fa-envelope-o"></i> Email address</label>
+                            <span style="color: red; "><form:errors path="email"/></span>
                         </div>
 
                         <div class="form-label-group">
                             <form:password path="password" id="inputPassword" class="form-control"/>
-                            <label for="inputPassword">Password</label>
-                            <font color="red"><form:errors path="password"/></font>
+                            <label for="inputPassword"><i class="fa fa-lock"></i> Password</label>
+                            <span style="color: red; "><form:errors path="password"/></span>
                         </div>
 
                         <div class="form-label-group">
                             <form:password path="rePassword" id="inputRePassword" class="form-control"/>
-                            <label for="inputRePassword">RePassword</label>
-                            <font color="red"><form:errors path="rePassword"/></font>
+                            <label for="inputRePassword"><i class="fa fa-lock"></i> RePassword</label>
+                            <span style="color: red; "><form:errors path="rePassword"/></span>
                         </div>
 
                         <div class="form-label-group">
                             <form:input path="avatar" type="file" id="inputAvatar" class="form-control-file"/>
-                            <label for="inputAvatar">Avatar</label>
-                            <font color="red"><form:errors path="avatar"/></font>
+                            <label for="inputAvatar"><i class="fa fa-picture-o"></i> Avatar</label>
+                            <span style="color: red; "><form:errors path="avatar"/></span>
                         </div>
 
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register
@@ -80,6 +76,8 @@
             </div>
         </div>
     </div>
+
+    <%@include file="fragments/footer.jspf" %>
 
 </div>
 
