@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home/*").permitAll()
                 .antMatchers("/notice-info/*").permitAll()
                 .antMatchers("/add-comment").permitAll()
+                .antMatchers("/usernames").permitAll()
                 .anyRequest().authenticated();
     }
 
