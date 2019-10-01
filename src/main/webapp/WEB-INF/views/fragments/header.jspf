@@ -8,24 +8,27 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+<nav class="navbar navbar-expand-sm navbar-dark">
     <div class="navbar-header">
         <span class="navbar-brand">Notice Board</span>
     </div>
     <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="<c:url value="/"/>">Home</a>
+            <a class="nav-item nav-link" href="<c:url value="/home/"/>"><i class="fa fa-home"></i>Home</a>
         </div>
     </div>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" id="findUser" placeholder="Search fo user" aria-label="Search">
+        <a class="findUserBtn btn btn-success">Search</a>
+    </form>
     <li class="nav-item dropdown" style="list-style-type: none">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile/Options
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<c:url value="/"/>">Profile</a>
-            <a class="dropdown-item" href="<c:url value="/"/>">Edit profile</a>
-            <a class="dropdown-item" href="<c:url value="/"/>">Messages</a>
+            <a class="dropdown-item" href="<c:url value="/user-page/profile"/>">Profile</a>
+            <a class="dropdown-item" href="<c:url value="/edit-user"/>">Edit profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" role="button" href="<c:url value="/perform_logout"/>">Log out</a>
         </div>
