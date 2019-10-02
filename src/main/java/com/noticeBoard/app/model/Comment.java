@@ -15,11 +15,13 @@ public class Comment extends AbstractEntity {
     private String content;
     private LocalDateTime created;
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
     @JoinColumn(name = "notice_id", nullable = false)
     private Notice notice;
+    @Column(name = "unregistered_username")
+    private String unregisteredUsername;
 
     public Comment() {
     }
@@ -59,5 +61,13 @@ public class Comment extends AbstractEntity {
 
     public void setNotice(Notice notice) {
         this.notice = notice;
+    }
+
+    public String getUnregisteredUsername() {
+        return unregisteredUsername;
+    }
+
+    public void setUnregisteredUsername(String unregisteredUsername) {
+        this.unregisteredUsername = unregisteredUsername;
     }
 }
