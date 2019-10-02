@@ -1,7 +1,7 @@
-package com.noticeBoard.app.web.controllers;
+package com.noticeBoard.app.web.controllers.action;
 
 import com.noticeBoard.app.dto.RegistrationFormDTO;
-import com.noticeBoard.app.services.RegistrationService;
+import com.noticeBoard.app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,29 +12,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
 
-    private RegistrationService registrationService;
+    private UserService userService;
 
     @Autowired
-    public RegistrationController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    public String prepareRegistrationPage(Model model) {
+    public String prepareRegistration(Model model) {
         model.addAttribute("registrationData", new RegistrationFormDTO());
         return "registration";
     }
 
     @PostMapping
-    public String processRegistrationPage(@ModelAttribute("registrationData") @Valid RegistrationFormDTO registrationData,
-                                          BindingResult result,
-                                          Principal principal) {
+    public String processRegistration(@ModelAttribute("registrationData") @Valid RegistrationFormDTO registrationData,
+                                          BindingResult result) {
         if (result.hasErrors()) {
             return "registration";
         }
@@ -44,19 +42,19 @@ public class RegistrationController {
                     "must be the same as Password");
             return "registration";
         }
-        if (!registrationService.isEmailAvailable(registrationData.getEmail())) {
+        if (userService.isEmailAvailable(registrationData.getEmail())) {
             result.rejectValue("email",
                     null,
                     "already taken");
             return "registration";
         }
-        if (!registrationService.isUsernameAvailable(registrationData.getUsername())) {
+        if (userService.isUsernameAvailable(registrationData.getUsername())) {
             result.rejectValue("username",
                     null,
                     "already taken");
             return "registration";
         }
-        registrationService.saveUser(registrationData);
+        userService.saveUser(registrationData);
         return "redirect:/login";
     }
 }
