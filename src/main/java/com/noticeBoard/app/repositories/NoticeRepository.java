@@ -1,5 +1,6 @@
 package com.noticeBoard.app.repositories;
 
+import com.noticeBoard.app.model.Category;
 import com.noticeBoard.app.model.Notice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,5 +14,11 @@ import java.util.List;
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
 
     @Query("SELECT n FROM Notice n WHERE n.endDate >= :endDate ORDER BY n.created DESC")
-    List<Notice> findBookByCategoryOrderedByTitle(@Param("endDate") LocalDate localDate);
+    List<Notice> findAllWhereEndDateInFutureOrderByCreatedDesc(@Param("endDate") LocalDate localDate);
+
+    @Query("SELECT n FROM Notice n JOIN n.categories c WHERE c = :category " +
+            "AND n.endDate >= :endDate ORDER BY n.created DESC")
+    List<Notice> findAllByCategoriesWhereEndDateInFutureOrderByCreatedDesc(
+            @Param("category") Category category, @Param("endDate") LocalDate localDate);
+
 }
