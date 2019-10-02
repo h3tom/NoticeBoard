@@ -35,13 +35,13 @@ public class NoticeService {
     }
 
     public List<NoticeDTO> getAll() {
-        List<Notice> notices = noticeRepository.findAllWhereEndDateInFutureOrderByCreatedDate(LocalDate.now());
+        List<Notice> notices = noticeRepository.findAllWhereEndDateInFutureOrderByCreatedDesc(LocalDate.now());
         return getNoticeDTOS(notices);
     }
 
     public List<NoticeDTO> getAllByCategory(Long id) {
         Category category = categoryRepository.findOne(id);
-        List<Notice> notices = noticeRepository.getAllByCategoriesOrderByCreatedDesc(category);
+        List<Notice> notices = noticeRepository.findAllByCategoriesWhereEndDateInFutureOrderByCreatedDesc(category, LocalDate.now());
         return getNoticeDTOS(notices);
     }
 
@@ -98,5 +98,10 @@ public class NoticeService {
     public NoticeDTO getById(Long id) {
         Notice notice = noticeRepository.findOne(id);
         return getNoticeDTO(notice);
+    }
+
+    public boolean checkIfEnded(Long id) {
+        Notice notice = noticeRepository.findOne(id);
+        return notice.getEndDate().isBefore(LocalDate.now());
     }
 }

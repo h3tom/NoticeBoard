@@ -34,7 +34,7 @@ public class CommentService {
     public void saveComment(AddCommentDTO commentDTO, Principal principal) {
         Comment comment = new Comment();
         comment.setContent(commentDTO.getContent());
-        Notice notice = noticeRepository.getById(commentDTO.getNoticeId());
+        Notice notice = noticeRepository.findOne(commentDTO.getNoticeId());
         comment.setNotice(notice);
 
         if (principal == null || principal.getName() == null || principal.getName().isEmpty()) {
@@ -47,7 +47,7 @@ public class CommentService {
     }
 
     public List<CommentDTO> getAllForNoticeId(Long id) {
-        Notice notice = noticeRepository.getById(id);
+        Notice notice = noticeRepository.findOne(id);
         List<Comment> comments = commentRepository.findAllByNoticeOrderByCreatedDesc(notice);
 
         return comments.stream().map(comment -> {
