@@ -1,8 +1,8 @@
 package com.noticeBoard.app.model;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,15 +12,15 @@ import java.util.List;
 @Table(name = "notices")
 public class Notice extends AbstractEntity {
 
-    @NotBlank
+    @Size(min = 5, max = 100)
     private String title;
 
-    @NotBlank
+    @Size(min = 5, max = 500)
     private String content;
 
     private LocalDateTime created;
 
-    @NotBlank
+    @NotNull
     @Column(name = "end_date")
     private LocalDate endDate;
 
@@ -28,18 +28,21 @@ public class Notice extends AbstractEntity {
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] photo;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotBlank
+    @Size(min = 1)
     @ManyToMany
     @JoinTable(name = "notices_categories",
             joinColumns = @JoinColumn(name = "notice_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "notice")
+    private List<Comment> comments = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
@@ -103,5 +106,13 @@ public class Notice extends AbstractEntity {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
