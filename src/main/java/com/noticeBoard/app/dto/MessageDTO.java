@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class MessageDTO {
 
+    private Long id;
     private String title;
     private String content;
     private String sender;
@@ -12,6 +13,14 @@ public class MessageDTO {
     private LocalDateTime created;
 
     public MessageDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

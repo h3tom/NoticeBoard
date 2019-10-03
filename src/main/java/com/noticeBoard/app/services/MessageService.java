@@ -40,6 +40,7 @@ public class MessageService {
     private List<MessageDTO> getMessageDTOS(List<Message> messages) {
         return messages.stream().map(message -> {
             MessageDTO messageDTO = new MessageDTO();
+            messageDTO.setId(message.getId());
             messageDTO.setTitle(message.getTitle());
             messageDTO.setContent(message.getContent());
             messageDTO.setSender(message.getSender().getUsername());
