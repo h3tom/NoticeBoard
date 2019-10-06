@@ -16,3 +16,4 @@
 <script src="<c:url value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>"></script>
 <script src='<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"/>'></script>
 <script src="<c:url value="/resources/static/js/findUserScript.js"/>"></script>
+<script src="<c:url value="/resources/static/js/getRandomJokeScript.js"/>"></script>
