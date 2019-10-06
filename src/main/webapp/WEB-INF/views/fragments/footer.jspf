@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <footer class="page-footer font-small fixed-bottom">
-    <div class="footer-copyright text-light text-center py-3">&copy; 2019 Copyright:
+    <div class="footer-copyright text-light text-center pt-3">&copy; 2019 Copyright:
         <a href="#" role="none">Tomasz Hein</a>
     </div>
 </footer>

@@ -21,7 +21,7 @@
     <%@include file="fragments/header.jspf" %>
 
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5 mx-auto">
             <div class="card bg-dark my-4">
                 <img src="data:image/jpeg;base64,${noticeInfo.image}" class="card-img-top"
                      onerror="this.onerror=null;this.src='<c:url
@@ -32,7 +32,7 @@
                         <a href="<c:url value="/user-page/${noticeInfo.owner}"/>">${noticeInfo.owner}</a> ${noticeInfo.created.dayOfMonth}.${noticeInfo.created.monthValue}.${noticeInfo.created.year}
                         ${noticeInfo.created.hour}:${noticeInfo.created.minute}
                         <c:if test="${username.length()>0 and !username.equals(noticeInfo.owner)}">
-                            <a class="btn btn-danger pull-right mr-3 mb-3">
+                            <a class="btn btn-danger pull-right mr-3 mb-3" href="<c:url value="/add-message/${noticeInfo.owner}"/>">
                                 <i class="fa fa-comments"></i> Private Message
                             </a>
                         </c:if>
@@ -55,7 +55,7 @@
         </div>
 
 
-        <div class="offset-1 col-md-5">
+        <div class="offset-1 col-md-5 mx-auto mb-3">
             <c:if test="${noticeInfo.endDate.isAfter(localDate) or noticeInfo.endDate.isEqual(localDate)}">
                 <div class="card text-white bg-dark my-4">
                     <div class="card-body">
@@ -76,7 +76,7 @@
             </c:if>
             <p class="my-4" style="color: white">Comments:</p>
             <c:forEach items="${allComments}" var="comment">
-                <div class="card text-white bg-dark mt-1">
+                <div class="card text-white bg-dark my-4">
                     <div class="card-body">
                             ${comment.unregisteredUsername} <a
                             href="<c:url value="/user-page/${comment.registeredUsername}"/>">${comment.registeredUsername}</a>

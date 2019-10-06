@@ -35,7 +35,7 @@
                     <c:if test="${!username.equals(user.username)}">
                         <a class="btn btn-warning mr-3 mb-3" href="mailto:${user.email}">
                             <i class="fa fa-comments"></i> Send email</a>
-                        <a class="btn btn-danger mr-3 mb-3">
+                        <a class="btn btn-danger mr-3 mb-3" href="<c:url value="/add-message/${user.username}"/>">
                             <i class="fa fa-comments"></i> Private Message
                         </a>
                     </c:if>
@@ -170,6 +170,8 @@
                                                         ${messageSent.created.hour}:${messageSent.created.minute}
                                                         </span>
                                                     <div class="card-body">
+                                                        <span style="color: #ff6600">Recipient: </span>${messageSent.receiver}
+                                                        <br>
                                                         <span style="color: #ff6600">Title: </span>${messageSent.title}
                                                         <a class="btn btn-warning pull-right"
                                                            href="<c:url value="/message/${messageSent.id}"/>">Go
