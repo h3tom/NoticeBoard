@@ -14,8 +14,9 @@
     </div>
     <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="<c:url value="/home/"/>"><i class="fa fa-home"></i>Home</a>
+            <a class="nav-item nav-link" href="<c:url value="/home/"/>"><i class="fa fa-home"></i> Home</a>
         </div>
+        <button class="getRandomJoke nav-item nav-link btn-warning"><i class="fa fa-smile-o"></i> Random joke</button>
     </div>
     <form class="form-inline">
         <input class="form-control mr-sm-2" id="findUser" placeholder="Search fo user" aria-label="Search">
