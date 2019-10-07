@@ -1,5 +1,6 @@
 package com.noticeBoard.app.services;
 
+import com.noticeBoard.app.dto.AddMessageDTO;
 import com.noticeBoard.app.dto.MessageDTO;
 import com.noticeBoard.app.model.Message;
 import com.noticeBoard.app.model.User;
@@ -38,16 +39,47 @@ public class MessageService {
     }
 
     private List<MessageDTO> getMessageDTOS(List<Message> messages) {
-        return messages.stream().map(message -> {
-            MessageDTO messageDTO = new MessageDTO();
-            messageDTO.setId(message.getId());
-            messageDTO.setTitle(message.getTitle());
-            messageDTO.setContent(message.getContent());
-            messageDTO.setSender(message.getSender().getUsername());
-            messageDTO.setReceiver(message.getReceiver().getUsername());
-            messageDTO.setReadMessage(message.getReadMessage());
-            messageDTO.setCreated(message.getCreated());
-            return messageDTO;
-        }).collect(Collectors.toList());
+        return messages.stream().map(this::getMessageDTO).collect(Collectors.toList());
+    }
+
+    private MessageDTO getMessageDTO(Message message) {
+        MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setId(message.getId());
+        messageDTO.setTitle(message.getTitle());
+        messageDTO.setContent(message.getContent());
+        messageDTO.setSender(message.getSender().getUsername());
+        messageDTO.setReceiver(message.getReceiver().getUsername());
+        messageDTO.setReadMessage(message.getReadMessage());
+        messageDTO.setCreated(message.getCreated());
+        return messageDTO;
+    }
+
+    public MessageDTO getMessage(Long id) {
+        Message message = messageRepository.getOne(id);
+        return getMessageDTO(message);
+    }
+
+    public boolean checkIfUserIsNotSenderOrReceiver(String username, Long messageId) {
+        MessageDTO message = getMessage(messageId);
+        return !message.getSender().equals(username) && !message.getReceiver().equals(username);
+    }
+
+    public void markAsRead(String username, Long id) {
+        Message message = messageRepository.getOne(id);
+        if (message.getReceiver().getUsername().equals(username)) {
+            message.setReadMessage(1);
+            messageRepository.save(message);
+        }
+    }
+
+    public void saveMessage(AddMessageDTO messageDTO) {
+        Message message = new Message();
+        message.setTitle(messageDTO.getTitle());
+        message.setContent(messageDTO.getContent());
+        User sender = userRepository.getByUsername(messageDTO.getSender());
+        message.setSender(sender);
+        User receiver = userRepository.getByUsername(messageDTO.getReceiver());
+        message.setReceiver(receiver);
+        messageRepository.save(message);
     }
 }
