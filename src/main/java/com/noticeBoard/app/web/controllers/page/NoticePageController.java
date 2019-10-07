@@ -34,6 +34,9 @@ public class NoticePageController {
                 return "redirect:/home/";
             }
         }
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+        }
         model.addAttribute("noticeInfo", noticeService.getById(noticeId));
         model.addAttribute("commentData", new AddCommentDTO());
         model.addAttribute("allComments", commentService.getAllForNoticeId(noticeId));
