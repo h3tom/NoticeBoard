@@ -1,4 +1,4 @@
-package com.noticeBoard.app.web.controllers;
+package com.noticeBoard.app.web.controllers.page;
 
 import com.noticeBoard.app.dto.LoginFormDTO;
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginPageController {
 
     @GetMapping
-    public String login(Model model) {
+    public String prepareLoginPage(Model model) {
         model.addAttribute("loginData", new LoginFormDTO());
         return "login";
     }
