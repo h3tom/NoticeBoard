@@ -22,7 +22,7 @@
 
     <div class="row">
         <div class="col-md-5 mx-auto">
-            <div class="card bg-dark my-4">
+            <div class="card bg-dark my-4 sticky-top">
                 <img src="data:image/jpeg;base64,${noticeInfo.image}" class="card-img-top"
                      onerror="this.onerror=null;this.src='<c:url
                              value="/resources/static/img/no-image-available.png"/>'"
