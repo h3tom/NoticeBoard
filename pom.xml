@@ -46,12 +46,12 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>
-            <version>5.2.0.RELEASE</version>
+            <version>4.3.7.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-messaging</artifactId>
-            <version>5.2.0.RELEASE</version>
+            <version>4.3.7.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
