@@ -11,8 +11,11 @@
 <html>
 <head>
     <title>Main Page</title>
-    <%@include file="fragments/head.jspf"%>
+    <%@include file="fragments/head.jspf" %>
+    <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"/>"
+            integrity="sha256-4jNHNewFZSwkUiWXCfjQ0erj6guZPNAjfiJQiBHk4K4=" crossorigin="anonymous"></script>
     <script src="<c:url value="/resources/static/js/selectCategoryScript.js"/>"></script>
+    <script src="<c:url value="/resources/static/js/chatScript.js"/>"></script>
 </head>
 <body>
 
@@ -42,6 +45,20 @@
             </div>
         </div>
     </div>
+
+    <c:if test="${username.length()>0}">
+        <div class="messages col-md-3">
+            <label for="chatMessageToSend">Your message:</label>
+            <input id="chatMessageToSend" type="text"/>
+            <span class="input-group-btn">
+                <button class="btn btn-success" id="sendChatMessage">Send</button>
+            </span>
+            <div style="overflow: auto; height: 200px">
+                <div id="response">
+                </div>
+            </div>
+        </div>
+    </c:if>
 
     <c:forEach items="${allNotices}" var="notice">
         <div class="card bg-dark offset-md-5 my-4" style="max-width: 600px;">
