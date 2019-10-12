@@ -3,7 +3,7 @@ package com.noticeBoard.app.dto;
 public class ChatMessageDTO {
 
     private String message;
-    private UserDTO userDTO;
+    private String user;
 
     public ChatMessageDTO() {
     }
@@ -16,11 +16,11 @@ public class ChatMessageDTO {
         this.message = message;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public String getUser() {
+        return user;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUser(String user) {
+        this.user = user;
     }
 }
