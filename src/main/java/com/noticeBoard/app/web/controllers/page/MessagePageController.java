@@ -21,8 +21,7 @@ public class MessagePageController {
         this.messageService = messageService;
     }
 
-    @GetMapping
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public String prepareMessagePage(@PathVariable Long id, Model model, Principal principal) {
         if (messageService.checkIfUserIsNotSenderOrReceiver(principal.getName(), id)) {
             return "redirect:/home/";

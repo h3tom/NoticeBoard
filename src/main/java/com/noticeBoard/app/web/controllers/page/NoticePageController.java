@@ -26,8 +26,7 @@ public class NoticePageController {
         this.commentService = commentService;
     }
 
-    @GetMapping
-    @RequestMapping("/{noticeId}")
+    @GetMapping("/{noticeId}")
     public String prepareNoticePage(@PathVariable Long noticeId, Model model, Principal principal) {
         if (noticeService.checkIfEnded(noticeId)) {
             if (principal == null || principal.getName() == null || principal.getName().isEmpty()) {

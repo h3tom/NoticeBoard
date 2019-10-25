@@ -22,8 +22,7 @@ public class AddMessageController {
         this.messageService = messageService;
     }
 
-    @GetMapping
-    @RequestMapping("/{receiver}")
+    @GetMapping("/{receiver}")
     public String prepareAddMessage(@PathVariable String receiver, Model model, Principal principal) {
         AddMessageDTO messageDTO = new AddMessageDTO();
         messageDTO.setSender(principal.getName());
