@@ -4,10 +4,16 @@
              version="2.1">
     <persistence-unit name="noticeBoardDBPersistenceUnit">
         <properties>
+<!--            <property name="javax.persistence.jdbc.url"-->
+<!--                      value="jdbc:mysql://localhost:3306/noticeBoardDB?serverTimezone=UTC"/>-->
+<!--            <property name="javax.persistence.jdbc.user" value="root"/>-->
+<!--            <property name="javax.persistence.jdbc.password" value="coderslab"/>-->
+
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/noticeBoardDB?serverTimezone=UTC"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="coderslab"/>
+                      value="jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_ea1ccb0878ecc0e?reconnect=true&amp;serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="bb8726c2802f61"/>
+            <property name="javax.persistence.jdbc.password" value="32f575e7"/>
+
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
