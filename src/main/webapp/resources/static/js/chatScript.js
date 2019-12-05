@@ -1,7 +1,8 @@
 $(function () {
     var client = null;
 
-    client = Stomp.client('ws://localhost:8080/chat');
+//    client = Stomp.client('ws://localhost:8080/chat');
+    client = Stomp.client('ws://hetom-noticeboard.herokuapp.com/chat')
     client.connect({}, function () {
         client.subscribe('/topic/messages', function (message) {
             showMessage(JSON.parse(message.body).message, JSON.parse(message.body).user)
